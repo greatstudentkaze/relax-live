@@ -1,25 +1,28 @@
+import togglePopup from './togglePopup';
 import smoothScrollBy from './smoothScrollBy';
 
 const menuHandler = () => {
-  const menuPopup = document.querySelector('.popup-menu');
+  const menuPopup = document.querySelector('.popup-menu'),
+    menuBtn = document.querySelector('.menu');
 
-  const toggleMenu = () => menuPopup.classList.toggle('popup-menu--opened');
+  menuBtn.addEventListener('click', evt => {
+    evt.preventDefault();
+    togglePopup(menuPopup);
+  });
 
-  document.addEventListener('click', evt => {
+  menuPopup.addEventListener('click', evt => {
     const target = evt.target,
-      menuBtn = target.closest('.menu'),
       closeBtn = target.closest('.close-menu'),
       menuItem = target.closest('.popup-menu-nav__item'),
       areaOutsideMenu = !target.closest('.popup-dialog-menu');
 
-    if (menuBtn || closeBtn ||
-      (areaOutsideMenu && menuPopup.classList.contains('popup-menu--opened'))) {
+    if (closeBtn || (areaOutsideMenu && menuPopup.classList.contains('popup--opened'))) {
       evt.preventDefault();
-      toggleMenu();
+      togglePopup(menuPopup);
     } else if (menuItem) {
       evt.preventDefault();
       smoothScrollBy(document.getElementById(target.getAttribute('href').slice(1)));
-      toggleMenu();
+      togglePopup(menuPopup);
     }
   });
 };
