@@ -6,12 +6,11 @@ const popupRepairTypesHandler = () => {
   document.addEventListener('click', evt => {
     const target = evt.target,
       linkList = target.closest('.link-list'),
+      closeBtn = target.closest('.close'),
       areaOutsidePopup = !target.closest('.popup-dialog-repair-types');
 
-    if (linkList) {
-      evt.preventDefault();
-      togglePopup(repairTypesPopup);
-    } else if (areaOutsidePopup && repairTypesPopup.classList.contains('popup--opened')) {
+    if (linkList || closeBtn ||
+      (areaOutsidePopup && repairTypesPopup.classList.contains('popup--opened'))) {
       evt.preventDefault();
       togglePopup(repairTypesPopup);
     }
