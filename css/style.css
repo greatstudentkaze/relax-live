@@ -364,6 +364,14 @@ template, [hidden] {
           -webkit-transition: 0.5s;
           transition: 0.5s;
           opacity: 0; }
+
+      .header-contacts__phone-number-accord--opened {
+        top: 30px;
+      }
+        .header-contacts__phone-number-accord--opened a {
+          opacity: 1;
+        }
+
     .header-contacts__arrow {
       cursor: pointer;
       -webkit-transition: 0.5s;
