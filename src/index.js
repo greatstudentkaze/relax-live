@@ -2,7 +2,7 @@
 import showPhoneNumber from './modules/showPhoneNumber';
 import menuHandler from './modules/menuHandler';
 import smoothScrollUp from './modules/smoothScrollUp';
-import popupRepairTypesHandler from './modules/popupRepairTypesHandler';
+import popupHandler from './modules/popupHandler';
 import sendForm from './modules/sendForm';
 
 // Init Modules
@@ -17,7 +17,24 @@ menuHandler();
 smoothScrollUp();
 
 // popup-repair-types
-popupRepairTypesHandler();
+const popupRepairTypesSelectors = {
+  popupSelector: '.popup-repair-types',
+  openBtnSelector: '.link-list',
+  closeBtnSelector: '.close',
+  popupDialogSelector: '.popup-dialog-repair-types'
+};
+
+popupHandler(popupRepairTypesSelectors);
+
+// popup-privacy
+const popupPrivacySelectors = {
+  popupSelector: '.popup-privacy',
+  openBtnSelector: '.link-privacy',
+  closeBtnSelector: '.close',
+  popupDialogSelector: '.popup-dialog-privacy'
+};
+
+popupHandler(popupPrivacySelectors);
 
 // Send form
 sendForm();
