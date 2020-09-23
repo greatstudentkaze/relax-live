@@ -1,3 +1,5 @@
+import smoothScrollBy from './smoothScrollBy';
+
 const menuHandler = () => {
   const menuPopup = document.querySelector('.popup-menu');
 
@@ -16,7 +18,7 @@ const menuHandler = () => {
       toggleMenu();
     } else if (menuItem) {
       evt.preventDefault();
-      // smooth scroll
+      smoothScrollBy(document.getElementById(target.getAttribute('href').slice(1)));
       toggleMenu();
     }
   });
