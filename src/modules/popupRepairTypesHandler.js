@@ -6,7 +6,7 @@ const popupRepairTypesHandler = () => {
   document.addEventListener('click', evt => {
     const target = evt.target,
       linkList = target.closest('.link-list'),
-      closeBtn = target.closest('.close'),
+      closeBtn = target.closest('.close') && target.closest('.popup-repair-types'),
       areaOutsidePopup = !target.closest('.popup-dialog-repair-types');
 
     if (linkList || closeBtn ||
