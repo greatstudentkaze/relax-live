@@ -4332,10 +4332,18 @@ div.wave-block:nth-child(17):after {
     @media (max-width: 365px) {
       .popup-menu-copyright {
         padding-right: 48px; } }
+.popup-menu {
+  opacity: 0;
+}
+.popup-menu .popup-dialog-menu {
+  visibility: hidden;
+}
   .popup-menu--opened {
     visibility: visible;
+    opacity: 1;
   }
   .popup-menu--opened .popup-dialog-menu {
+    visibility: visible;
     transform: translate3d(0, 0, 0);
   }
   @media (max-width: 576px) {
