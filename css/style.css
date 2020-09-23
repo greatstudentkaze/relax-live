@@ -7805,6 +7805,7 @@ div.wave-block:nth-child(17):after {
   text-align: center;
   min-width: 320px;
   display: block;
+  -webkit-transition: none;
   transition: none;
 }
 
@@ -9149,6 +9150,11 @@ strong {
     -webkit-transition: 0.3s;
     transition: 0.3s;
     overflow: hidden;
+  }
+
+  .popup--opened .mobile-row {
+    -webkit-transition: none;
+    transition: none;
   }
 
   .mobile-row td:nth-child(1) {
