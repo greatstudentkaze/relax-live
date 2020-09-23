@@ -6350,16 +6350,12 @@ div.wave-block:nth-child(17):after {
   }
 }
 
-.popup-menu--opened {
-  visibility: visible;
-}
-
-.popup-menu--opened .popup-dialog-menu {
+.popup--opened .popup-dialog-menu {
   transform: translate3d(0, 0, 0);
 }
 
 @media (max-width: 576px) {
-  .popup-menu--opened .popup-dialog-menu {
+  .popup--opened .popup-dialog-menu {
     transform: translate3d(0, 0, 0);
   }
 }
