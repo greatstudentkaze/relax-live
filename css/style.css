@@ -362,7 +362,7 @@ template, [hidden] {
   padding-top: 12px;
   padding-left: 32px;
   font-size: 20px;
-  text-shadow: 0px 4px 10px rgba(255, 255, 255, 0.25);
+  text-shadow: 0 4px 10px rgba(255, 255, 255, 0.25);
   z-index: 1;
 }
 
@@ -1249,7 +1249,7 @@ template, [hidden] {
 }
 
 .formula-item__descr {
-  width: 188px;
+  width: 200px;
   padding-top: 10px;
 }
 
@@ -1334,12 +1334,8 @@ template, [hidden] {
   text-align: left;
   -webkit-transform: translate3d(0, -5px, 0);
   transform: translate3d(0, -5px, 0);
-  opacity: 0.1;
   transition: 0.2s;
-}
-
-.formula-item-popup p {
-  padding-bottom: 15px;
+  opacity: 0.1;
 }
 
 @media (max-width: 1024px) {
@@ -1362,13 +1358,12 @@ template, [hidden] {
 }
 
 .formula-item-popup--rotated {
-  bottom: -266px;
+  top: 110px;
   padding-top: 40px;
 }
 
-.formula-item-popup--rotated:before {
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
+.formula-item-popup p {
+  padding-bottom: 15px;
 }
 
 @media (max-width: 1024px) {
@@ -1533,6 +1528,11 @@ template, [hidden] {
     background: url("../images/formula/item_popup_1.svg") no-repeat;
     background-size: contain;
   }
+}
+
+.formula-item-popup--rotated:before {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .repair-types {
@@ -8588,6 +8588,7 @@ div.wave-block:nth-child(17):after {
 }
 
 .active-item {
+  z-index: 1;
   font-size: 20px;
   opacity: 1;
 }
