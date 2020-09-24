@@ -4,6 +4,7 @@ import menuHandler from './modules/menuHandler';
 import smoothScrollUp from './modules/smoothScrollUp';
 import popupHandler from './modules/popupHandler';
 import tooltipHandler from './modules/tooltipHandler';
+import tabs from './modules/tabs';
 import sendForm from './modules/sendForm';
 
 // Init Modules
@@ -49,6 +50,9 @@ popupHandler(popupConsultationSelectors);
 
 // Tooltips in the advantages block
 tooltipHandler();
+
+// scheme tabs
+tabs();
 
 // Send form
 sendForm();
