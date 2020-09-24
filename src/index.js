@@ -37,6 +37,16 @@ const popupPrivacySelectors = {
 
 popupHandler(popupPrivacySelectors);
 
+// popup-consultation
+const popupConsultationSelectors = {
+  popupSelector: '.popup-consultation',
+  openBtnSelector: '.js-consultation',
+  closeBtnSelector: '.close-consultation',
+  popupDialogSelector: '.feedback-wrap'
+};
+
+popupHandler(popupConsultationSelectors);
+
 // Tooltips in the advantages block
 tooltipHandler();
 
