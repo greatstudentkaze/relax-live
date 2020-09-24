@@ -3,6 +3,7 @@ import showPhoneNumber from './modules/showPhoneNumber';
 import menuHandler from './modules/menuHandler';
 import smoothScrollUp from './modules/smoothScrollUp';
 import popupHandler from './modules/popupHandler';
+import tooltipHandler from './modules/tooltipHandler';
 import sendForm from './modules/sendForm';
 
 // Init Modules
@@ -35,6 +36,9 @@ const popupPrivacySelectors = {
 };
 
 popupHandler(popupPrivacySelectors);
+
+// Tooltips in the advantages block
+tooltipHandler();
 
 // Send form
 sendForm();
