@@ -13,6 +13,7 @@ const popupHandler = ({ popupSelector, openBtnSelector, closeBtnSelector, popupD
       (areaOutsidePopup && popup.classList.contains('popup--opened'))) {
       evt.preventDefault();
       togglePopup(popup);
+      document.body.style.overflow = document.body.style.overflow ? '' : 'hidden';
     }
   });
 };
