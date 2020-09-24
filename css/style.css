@@ -1241,6 +1241,7 @@ template, [hidden] {
   text-align: center;
   color: #000000;
   z-index: 0;
+  transition: 0.3s;
 }
 
 .formula-item strong {
@@ -1334,6 +1335,7 @@ template, [hidden] {
   -webkit-transform: translate3d(0, -5px, 0);
   transform: translate3d(0, -5px, 0);
   opacity: 0.1;
+  transition: 0.2s;
 }
 
 .formula-item-popup p {
@@ -1357,6 +1359,16 @@ template, [hidden] {
     top: 100px;
     line-height: 20px;
   }
+}
+
+.formula-item-popup--rotated {
+  bottom: -266px;
+  padding-top: 40px;
+}
+
+.formula-item-popup--rotated:before {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 @media (max-width: 1024px) {
@@ -8590,11 +8602,6 @@ div.wave-block:nth-child(17):after {
   transition: 0.4s;
 }
 
-.active-item .formula-item__icon-inner {
-  width: 58px;
-  height: 58px;
-}
-
 @media (max-width: 575px) {
   .active-item .formula-item__icon {
     width: 48px;
@@ -8603,8 +8610,14 @@ div.wave-block:nth-child(17):after {
 }
 
 .active-item .formula-item__icon-inner {
+  width: 58px;
+  height: 58px;
   opacity: 1;
   font-size: 24px;
+  color: #FFFFFF;
+  background: -webkit-gradient(linear, left top, right top, from(#F48922), to(#FFB015));
+  background: linear-gradient(90deg, #F48922 0%, #FFB015 100%);
+  transition: 0.2s;
 }
 
 @media (max-width: 575px) {
@@ -8619,12 +8632,6 @@ div.wave-block:nth-child(17):after {
   font-size: 20px;
 }
 
-.active-item .formula-item__icon-inner {
-  color: #FFFFFF;
-  background: -webkit-gradient(linear, left top, right top, from(#F48922), to(#FFB015));
-  background: linear-gradient(90deg, #F48922 0%, #FFB015 100%);
-}
-
 .active-item .formula-item__icon span {
   color: #FFFFFF;
 }
@@ -8632,6 +8639,7 @@ div.wave-block:nth-child(17):after {
 .active-item .formula-item-popup {
   visibility: visible;
   opacity: 1;
+  transition: 0.3s;
 }
 
 .active-item-partners {

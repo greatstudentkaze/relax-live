@@ -4,15 +4,16 @@ const tooltipHandler = () => {
   advantagesWrapper.addEventListener('mouseover', evt => {
     const target = evt.target,
       item = target.closest('.formula-item');
-
     if (!item) return;
 
+    item.classList.add('active-item');
     const tooltip = item.querySelector('.formula-item-popup');
-    tooltip.style.visibility = 'visible';
-    tooltip.style.opacity = '1';
+
 
     if (tooltip.getBoundingClientRect().top < 0) {
-      console.log(1);
+      tooltip.classList.add('formula-item-popup--rotated');
+    } else {
+      tooltip.classList.remove('formula-item-popup--rotated');
     }
   });
 
@@ -22,9 +23,9 @@ const tooltipHandler = () => {
 
     if (!item) return;
 
+    item.classList.remove('active-item');
     const tooltip = item.querySelector('.formula-item-popup');
-    tooltip.style.visibility = '';
-    tooltip.style.opacity = '';
+
   });
 };
 
