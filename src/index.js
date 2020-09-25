@@ -64,5 +64,16 @@ const partnersSliderOptions = {
 const partnersSlider = new SliderCarousel(partnersSliderOptions);
 partnersSlider.init();
 
+// Reviews slider
+// const reviewsSliderOptions = {
+//   wrapper: '.reviews-slider-wrap',
+//   slideList: '.reviews-slider',
+//   togglePrev: '#reviews-arrow_left',
+//   toggleNext: '#reviews-arrow_right',
+//   slidesNumber: 1,
+// };
+// const reviewsSlider = new SliderCarousel(reviewsSliderOptions);
+// reviewsSlider.init();
+
 // Send form
 sendForm();
