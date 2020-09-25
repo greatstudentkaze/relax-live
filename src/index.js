@@ -4,6 +4,7 @@ import menuHandler from './modules/menuHandler';
 import smoothScrollUp from './modules/smoothScrollUp';
 import popupHandler from './modules/popupHandler';
 import tooltipHandler from './modules/tooltipHandler';
+import SliderCarousel from './modules/sliderCarousel';
 import sendForm from './modules/sendForm';
 
 // Init Modules
@@ -49,6 +50,19 @@ popupHandler(popupConsultationSelectors);
 
 // Tooltips in the advantages block
 tooltipHandler();
+
+// Partners slider
+const partnersSliderOptions = {
+  wrapper: '.partners .wrapper',
+  slideList: '.partners-slider',
+  togglePrev: '#partners-arrow_left',
+  toggleNext: '#partners-arrow_right',
+  slidesNumber: 3,
+  infinity: true,
+  responsive: [{ breakpoint: 576, slidesNumber: 1 }]
+};
+const partnersSlider = new SliderCarousel(partnersSliderOptions);
+partnersSlider.init();
 
 // Send form
 sendForm();
