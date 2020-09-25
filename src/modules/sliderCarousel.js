@@ -12,6 +12,7 @@ class SliderCarousel {
     this.togglePrev = document.querySelector(togglePrev);
     this.toggleNext = document.querySelector(toggleNext);
     this.slidesNumber = slidesNumber;
+    this.sliderId = `${(+new Date()).toString(16)}`;
 
     this.options = {
       position,
@@ -70,21 +71,20 @@ class SliderCarousel {
   addClasses() {
     this.wrapper.classList.add('gsk-slider');
     this.slideList.classList.add('gsk-slider__list');
-    [...this.slides].forEach(slide => slide.classList.add('gsk-slider__item'));
+    [...this.slides].forEach(slide => slide.classList.add('gsk-slider__item', `gsk-slider__item--${this.sliderId}`));
   }
 
   addStyles() {
-    let style = document.getElementById('gsk-slider');
+    let style = document.getElementById(`gsk-slider--${this.sliderId}`);
     if (!style) {
       style = document.createElement('style');
-      style.id = 'gsk-slider';
+      style.id = `gsk-slider--${this.sliderId}`;
     }
 
     style.textContent = `
-      .gsk-slider__item {
+      .gsk-slider__item--${this.sliderId} {
         flex-basis: ${this.options.slideWidth}% !important;
-      }
-    `;
+      }`;
 
     document.head.append(style);
   }
