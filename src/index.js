@@ -5,6 +5,7 @@ import smoothScrollUp from './modules/smoothScrollUp';
 import popupHandler from './modules/popupHandler';
 import tooltipHandler from './modules/tooltipHandler';
 import SliderCarousel from './modules/sliderCarousel';
+import faqAccordion from './modules/faqAccordion';
 import sendForm from './modules/sendForm';
 
 // Init Modules
@@ -75,6 +76,9 @@ const reviewsSliderOptions = {
 };
 const reviewsSlider = new SliderCarousel(reviewsSliderOptions);
 reviewsSlider.init();
+
+// FAQ Accordion
+faqAccordion();
 
 // Send form
 sendForm();
