@@ -1,6 +1,6 @@
 class SliderCarousel {
   constructor({
-    wrapper, slideList, togglePrev, toggleNext,
+    wrapper, slideList, togglePrev, toggleNext, dotList,
     position = 0,
     slidesNumber = 4,
     infinity = false,
@@ -13,6 +13,8 @@ class SliderCarousel {
     this.toggleNext = document.querySelector(toggleNext);
     this.slidesNumber = slidesNumber;
     this.sliderId = `${(+new Date()).toString(16)}`;
+
+    this.dotList = document.querySelector(dotList);
 
     this.options = {
       position,
@@ -34,6 +36,10 @@ class SliderCarousel {
       this.configureToggles();
     }
 
+    if (this.dotList) {
+      this.dotHandler();
+    }
+
     if (this.responsive) {
       this.makeSliderResponsive();
     }
@@ -46,11 +52,14 @@ class SliderCarousel {
 
   prevSlide() {
     if (this.options.position > 0 || this.options.infinity) {
+      if (this.dots) this.dots[this.options.position].classList.remove('dot_active');
       this.options.position--;
 
       if (this.options.position < 0) {
         this.options.position = this.options.maxPosition;
       }
+
+      if (this.dots) this.dots[this.options.position].classList.add('dot_active');
 
       this.slideList.style.transform = `translateX(-${this.options.position * this.options.slideWidth}%)`;
     }
@@ -58,14 +67,36 @@ class SliderCarousel {
 
   nextSlide() {
     if (this.options.position < this.options.maxPosition || this.options.infinity) {
+      if (this.dots) this.dots[this.options.position].classList.remove('dot_active');
       this.options.position++;
 
       if (this.options.position > this.options.maxPosition) {
         this.options.position = 0;
       }
 
+      if (this.dots) this.dots[this.options.position].classList.add('dot_active');
+
       this.slideList.style.transform = `translateX(-${this.options.position * this.options.slideWidth}%)`;
     }
+  }
+
+  dotHandler() {
+    this.dots = [...this.dotList.children];
+    this.dotList.addEventListener('click', evt => {
+      const dotTarget = evt.target.closest('.dot');
+
+      if (!dotTarget) return;
+
+      this.dots.forEach((dot, i) => {
+        if (dot === dotTarget) {
+          dot.classList.add('dot_active');
+          this.options.position = i;
+          this.slideList.style.transform = `translateX(-${this.options.position * this.options.slideWidth}%)`;
+        } else {
+          dot.classList.remove('dot_active');
+        }
+      });
+    });
   }
 
   addClasses() {
