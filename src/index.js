@@ -6,6 +6,7 @@ import popupHandler from './modules/popupHandler';
 import tooltipHandler from './modules/tooltipHandler';
 import SliderCarousel from './modules/sliderCarousel';
 import faqAccordion from './modules/faqAccordion';
+import tabs from './modules/tabs';
 import sendForm from './modules/sendForm';
 
 // Init Modules
@@ -80,6 +81,9 @@ reviewsSlider.init();
 
 // FAQ Accordion
 faqAccordion();
+
+// scheme tabs
+tabs();
 
 // Send form
 sendForm();
