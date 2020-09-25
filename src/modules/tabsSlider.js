@@ -10,7 +10,7 @@ const tabsSlider = () => {
   const checkWindowWidth = () => {
     tabList.style.transform = '';
     currentTab = 0;
-    scrollWidth = 0
+    scrollWidth = 0;
 
     if (document.documentElement.clientWidth <= 576) {
       maxPosition = tabs.length - 1;

@@ -7,6 +7,7 @@ import tooltipHandler from './modules/tooltipHandler';
 import SliderCarousel from './modules/sliderCarousel';
 import faqAccordion from './modules/faqAccordion';
 import tabs from './modules/tabs';
+import tabsSlider from './modules/tabsSlider';
 import sendForm from './modules/sendForm';
 
 // Init Modules
@@ -84,6 +85,9 @@ faqAccordion();
 
 // scheme tabs
 tabs();
+
+// scheme tabs slider
+tabsSlider();
 
 // Send form
 sendForm();
