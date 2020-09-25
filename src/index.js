@@ -29,6 +29,17 @@ const popupRepairTypesSelectors = {
 
 popupHandler(popupRepairTypesSelectors);
 
+// popup-consultation
+const popupConsultationSelectors = {
+  popupSelector: '.popup-consultation',
+  openBtnSelector: '.js-consultation',
+  closeBtnSelector: '.close-consultation',
+  popupDialogSelector: '.feedback-wrap',
+  anotherPopupSelector: '.popup-privacy'
+};
+
+popupHandler(popupConsultationSelectors);
+
 // popup-privacy
 const popupPrivacySelectors = {
   popupSelector: '.popup-privacy',
@@ -38,16 +49,6 @@ const popupPrivacySelectors = {
 };
 
 popupHandler(popupPrivacySelectors);
-
-// popup-consultation
-const popupConsultationSelectors = {
-  popupSelector: '.popup-consultation',
-  openBtnSelector: '.js-consultation',
-  closeBtnSelector: '.close-consultation',
-  popupDialogSelector: '.feedback-wrap'
-};
-
-popupHandler(popupConsultationSelectors);
 
 // Tooltips in the advantages block
 tooltipHandler();
