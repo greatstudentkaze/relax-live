@@ -4604,8 +4604,16 @@ div.wave-block:nth-child(17):after {
   position: relative;
 }
 
+.scheme-slider__list {
+  display: flex;
+}
+
 .scheme-slider__slide {
   position: relative;
+
+  flex-basis: 100%;
+  flex-shrink: 0;
+
   overflow: hidden;
 }
 
