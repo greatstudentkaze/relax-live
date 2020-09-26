@@ -66,7 +66,24 @@ const popupThankSelectors = {
 popupHandler(popupThankSelectors);
 
 // Tooltips in the advantages block
-tooltipHandler();
+const advantageTooltipSelectors = {
+  wrapperSelector: '.formula .wrapper_small',
+  itemSelector: '.formula-item',
+  iconSelector: '.formula-item__icon-inner-text',
+  popupSelector: '.formula-item-popup',
+  activeItemClass: 'active-item',
+};
+tooltipHandler(advantageTooltipSelectors);
+
+// Tooltips in the problems block
+const problemTooltipSelectors = {
+  wrapperSelector: '.problems .wrapper_middle',
+  itemSelector: '.problems-item',
+  iconSelector: '.problems-item__icon',
+  popupSelector: '.problems-item-popup',
+  activeItemClass: 'active-item',
+};
+tooltipHandler(problemTooltipSelectors);
 
 // Partners slider
 const partnersSliderOptions = {
@@ -105,6 +122,19 @@ const advantagesSliderOptions = {
 };
 const advantagesSlider = new SliderCarousel(advantagesSliderOptions);
 advantagesSlider.init();
+
+// Problems slider
+const problemsSliderOptions = {
+  wrapper: '.problems-slider-wrap',
+  slideList: '.problems-slider',
+  togglePrev: '#problems-arrow_left',
+  toggleNext: '#problems-arrow_right',
+  activeItem: 'active-item',
+  slidesNumber: 1,
+  extraStyles: '.gsk-slider__list { align-items: start !important; }'
+};
+const problemsSlider = new SliderCarousel(problemsSliderOptions);
+problemsSlider.init();
 
 // FAQ Accordion
 faqAccordion();
