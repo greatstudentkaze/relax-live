@@ -5830,6 +5830,11 @@ div.wave-block:nth-child(17):after {
   }
 }
 
+.popup-repair-types-nav__item.active {
+  border-width: 2px !important;
+  border-color: #F48922 !important;
+}
+
 .popup-repair-types-nav__item svg {
   height: 38px;
 }
@@ -6283,6 +6288,7 @@ div.wave-block:nth-child(17):after {
 }
 
 .popup-repair-types-content-table__list {
+  display: none;
   border: 1px solid #FFFFFF;
   width: 100%;
   height: 100%;
@@ -6306,8 +6312,8 @@ div.wave-block:nth-child(17):after {
 .popup-repair-types-content-table__list td {
   text-align: center;
   width: 133px;
+  border: 0 solid #FFFFFF;
   border-left: 2px solid #FFFFFF;
-  border: 0px solid #FFFFFF;
   padding: 3px 2px;
   font-size: 14px;
 }
@@ -6328,7 +6334,7 @@ div.wave-block:nth-child(17):after {
 }
 
 .popup-menu-title {
-  font-family: Montserrat Alternates;
+  font-family: Montserrat Alternates, serif;
   font-style: normal;
   font-weight: 800;
   font-size: 30px;
@@ -8981,6 +8987,10 @@ div.wave-block:nth-child(17):after {
 
 .visible-content-block {
   display: block;
+}
+
+.visible-content-table {
+  display: table;
 }
 
 * {
