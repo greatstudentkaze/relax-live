@@ -1,5 +1,5 @@
-const tabsSlider = () => {
-  const tabsWrap = document.querySelector('.scheme .nav-wrap'),
+const tabsSlider = sectionSelector => {
+  const tabsWrap = document.querySelector(`${sectionSelector} .nav-wrap`),
     tabList = tabsWrap.querySelector('.nav-list'),
     tabs = tabsWrap.querySelectorAll('.button_o');
 
