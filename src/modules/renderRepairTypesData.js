@@ -1,3 +1,5 @@
+import tabs from './tabs';
+
 const renderRepairTypesData = url => {
 
   const renderDate = dateData => {
@@ -15,11 +17,13 @@ const renderRepairTypesData = url => {
     const typeList = document.querySelector('.nav-list-popup-repair'),
       titleTemplate = document.querySelector('.js-repair-types-title');
 
-    titles.forEach(({ title }) => {
+    titles.forEach(({ title }, i) => {
       const titleBlock = titleTemplate.content.cloneNode(true),
         titleText = titleBlock.querySelector('.button_o');
 
       titleText.textContent = title;
+
+      if (i === 0) titleText.classList.add('active');
 
       typeList.append(titleBlock);
     });
@@ -46,11 +50,14 @@ const renderRepairTypesData = url => {
     const tableList = document.querySelector('.popup-repair-types-content-table'),
       tableTemplate = document.querySelector('.js-repair-types-table');
 
-    priceLists.forEach(({ priceList }) => {
+    priceLists.forEach(({ priceList }, i) => {
       const table = tableTemplate.content.cloneNode(true),
+        tableWrap = table.querySelector('.popup-repair-types-content-table__list'),
         tableBody = table.querySelector('tbody');
 
       renderTypes(priceList, tableBody);
+
+      if (i === 0) tableWrap.classList.add('visible-content-table');
 
       tableList.append(table);
     });
@@ -66,6 +73,15 @@ const renderRepairTypesData = url => {
     renderDate(data[0]);
     renderTitles(data.slice(1));
     renderTables(data.slice(1));
+
+    // repair types tabs
+    const repairTypesTabSelectors = {
+      sectionSelector: '.popup-repair-types',
+      tabSelector: '.button_o',
+      tabContentSelector: '.popup-repair-types-content-table__list',
+      visibleTabContent: 'visible-content-table'
+    };
+    tabs(repairTypesTabSelectors);
 
     return data;
   };
