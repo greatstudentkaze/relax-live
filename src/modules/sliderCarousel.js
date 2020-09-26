@@ -1,10 +1,11 @@
 class SliderCarousel {
   constructor({
-    wrapper, slideList, togglePrev, toggleNext, dotList,
+    wrapper, slideList, togglePrev, toggleNext, dotList, activeItem,
     position = 0,
     slidesNumber = 4,
     infinity = false,
-    responsive = []
+    responsive = [],
+    extraStyles
   }) {
     this.wrapper = document.querySelector(wrapper);
     this.slideList = document.querySelector(slideList);
@@ -15,6 +16,7 @@ class SliderCarousel {
     this.sliderId = `${(+new Date()).toString(16)}`;
 
     this.dotList = document.querySelector(dotList);
+    this.activeItem = activeItem;
 
     this.options = {
       position,
@@ -23,6 +25,7 @@ class SliderCarousel {
       infinity
     };
     this.responsive = responsive;
+    this.extraStyles = extraStyles;
   }
 
   init() {
@@ -52,14 +55,14 @@ class SliderCarousel {
 
   prevSlide() {
     if (this.options.position > 0 || this.options.infinity) {
-      if (this.dots) this.dots[this.options.position].classList.remove('dot_active');
+      this.removeActive(this.options.position);
       this.options.position--;
 
       if (this.options.position < 0) {
         this.options.position = this.options.maxPosition;
       }
 
-      if (this.dots) this.dots[this.options.position].classList.add('dot_active');
+      this.addActive(this.options.position);
 
       this.slideList.style.transform = `translateX(-${this.options.position * this.options.slideWidth}%)`;
     }
@@ -67,17 +70,27 @@ class SliderCarousel {
 
   nextSlide() {
     if (this.options.position < this.options.maxPosition || this.options.infinity) {
-      if (this.dots) this.dots[this.options.position].classList.remove('dot_active');
+      this.removeActive(this.options.position);
       this.options.position++;
 
       if (this.options.position > this.options.maxPosition) {
         this.options.position = 0;
       }
 
-      if (this.dots) this.dots[this.options.position].classList.add('dot_active');
+      this.addActive(this.options.position);
 
       this.slideList.style.transform = `translateX(-${this.options.position * this.options.slideWidth}%)`;
     }
+  }
+
+  removeActive(position) {
+    if (this.dots) this.dots[position].classList.remove('dot_active');
+    if (this.activeItem) this.slides[position].classList.remove(this.activeItem);
+  }
+
+  addActive(position) {
+    if (this.dots) this.dots[position].classList.add('dot_active');
+    if (this.activeItem) this.slides[position].classList.add(this.activeItem);
   }
 
   dotHandler() {
@@ -103,6 +116,7 @@ class SliderCarousel {
     this.wrapper.classList.add('gsk-slider');
     this.slideList.classList.add('gsk-slider__list');
     [...this.slides].forEach(slide => slide.classList.add('gsk-slider__item', `gsk-slider__item--${this.sliderId}`));
+    if (this.activeItem) this.slides[0].classList.add(this.activeItem);
   }
 
   addStyles() {
@@ -116,6 +130,8 @@ class SliderCarousel {
       .gsk-slider__item--${this.sliderId} {
         flex-basis: ${this.options.slideWidth}% !important;
       }`;
+
+    if (this.extraStyles) style.textContent += this.extraStyles;
 
     document.head.append(style);
   }
