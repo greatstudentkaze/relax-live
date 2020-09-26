@@ -13,7 +13,7 @@ const tabs = ({ sectionSelector, tabSelector, tabContentSelector,
     tabsContent.forEach((tabContent, i) => {
       if (index === i) {
         tabs[i].classList.add('active');
-        if (sliderWrap) sliderWrap.style.transform = `translateY(-${i * slide.clientHeight}px)`;
+        if (sliderWrap) sliderWrap.style.transform = `translateX(-${i * slide.clientWidth}px)`;
         tabContent.classList.add(visibleTabContent);
       } else {
         tabs[i].classList.remove('active');
