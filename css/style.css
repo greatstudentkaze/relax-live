@@ -1357,7 +1357,7 @@ template, [hidden] {
   }
 }
 
-.formula-item-popup--rotated {
+.item-popup--rotated {
   top: 110px;
   padding-top: 40px;
 }
@@ -1530,7 +1530,7 @@ template, [hidden] {
   }
 }
 
-.formula-item-popup--rotated:before {
+.item-popup--rotated:before {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
@@ -8702,14 +8702,12 @@ div.wave-block:nth-child(17):after {
   }
 }
 
-@media (max-width: 1024px) {
-  .active-item .problems-item__icon-inner {
-    background: -webkit-gradient(linear, left top, right top, from(#F48922), to(#FFB015));
-    background: linear-gradient(90deg, #F48922 0%, #FFB015 100%);
-    color: #FFFFFF;
-  }
+.active-item .problems-item__icon-inner {
+  background: -webkit-gradient(linear, left top, right top, from(#F48922), to(#FFB015));
+  background: linear-gradient(90deg, #F48922 0%, #FFB015 100%);
+  color: #FFFFFF;
+  opacity: 1;
 }
-
 @media (max-width: 575px) {
   .active-item .problems-item__icon-inner {
     width: 36px;
@@ -8754,11 +8752,9 @@ div.wave-block:nth-child(17):after {
   fill: #ffffff;
 }
 
-@media (max-width: 1024px) {
-  .active-item .problems-item-popup {
-    visibility: visible;
-    opacity: 1;
-  }
+.active-item .problems-item-popup {
+  visibility: visible;
+  opacity: 1;
 }
 
 #designs > .wrapper > div.preview-block.visible > .preview-block__item > .preview-block__item-inner.preview_active {
