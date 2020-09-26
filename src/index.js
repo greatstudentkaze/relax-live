@@ -75,10 +75,23 @@ const reviewsSliderOptions = {
   togglePrev: '#reviews-arrow_left',
   toggleNext: '#reviews-arrow_right',
   dotList: '.slider-dots-reviews',
-  slidesNumber: 1,
+  slidesNumber: 1
 };
 const reviewsSlider = new SliderCarousel(reviewsSliderOptions);
 reviewsSlider.init();
+
+// Advantages slider
+const advantagesSliderOptions = {
+  wrapper: '.formula-slider-wrap',
+  slideList: '.formula-slider',
+  togglePrev: '#formula-arrow_left',
+  toggleNext: '#formula-arrow_right',
+  activeItem: 'active-item',
+  slidesNumber: 1,
+  extraStyles: '.gsk-slider__list { align-items: start !important; }'
+};
+const advantagesSlider = new SliderCarousel(advantagesSliderOptions);
+advantagesSlider.init();
 
 // FAQ Accordion
 faqAccordion();
