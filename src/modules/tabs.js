@@ -1,26 +1,29 @@
-const tabs = () => {
-  const scheme = document.getElementById('scheme'),
-    tabs = scheme.querySelectorAll('.button_o'),
-    textTabs = scheme.querySelectorAll('.scheme-description-block'),
-    sliderWrap = scheme.querySelector('.js-slider-wrap');
+const tabs = ({ sectionSelector, tabSelector, tabContentSelector,
+  sliderWrapSelector, slideSelector, visibleTabContent }) => {
+
+  const section = document.querySelector(sectionSelector),
+    tabs = section.querySelectorAll(tabSelector),
+    tabsContent = section.querySelectorAll(tabContentSelector),
+    sliderWrap = section.querySelector(sliderWrapSelector);
 
   const toggleTabContent = index => {
-    const slide = sliderWrap.querySelector('.scheme-slider__slide');
+    let slide;
+    if (sliderWrap) slide = sliderWrap.querySelector(slideSelector);
 
-    textTabs.forEach((tabContent, i) => {
+    tabsContent.forEach((tabContent, i) => {
       if (index === i) {
         tabs[i].classList.add('active');
-        sliderWrap.style.transform = `translateY(-${i * slide.clientHeight}px)`;
-        tabContent.classList.add('visible-content-block');
+        if (sliderWrap) sliderWrap.style.transform = `translateY(-${i * slide.clientHeight}px)`;
+        tabContent.classList.add(visibleTabContent);
       } else {
         tabs[i].classList.remove('active');
-        tabContent.classList.remove('visible-content-block');
+        tabContent.classList.remove(visibleTabContent);
       }
     });
   };
 
-  scheme.addEventListener('click', evt => {
-    const targetTab = evt.target.closest('.button_o');
+  section.addEventListener('click', evt => {
+    const targetTab = evt.target.closest(tabSelector);
 
     if (targetTab) {
       tabs.forEach((tab, index) => {
