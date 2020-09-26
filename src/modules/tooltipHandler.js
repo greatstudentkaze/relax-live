@@ -1,27 +1,27 @@
-const tooltipHandler = () => {
-  const advantagesWrapper = document.querySelector('.wrapper_small');
+const tooltipHandler = ({ wrapperSelector, itemSelector, iconSelector, popupSelector, activeItemClass }) => {
+  const wrapper = document.querySelector(wrapperSelector);
 
-  advantagesWrapper.addEventListener('mouseover', evt => {
+  wrapper.addEventListener('mouseover', evt => {
     const target = evt.target,
-      item = target.closest('.formula-item');
+      item = target.closest(itemSelector);
 
-    if (!target.closest('.formula-item__icon-inner-text')) return;
+    if (!target.closest(iconSelector)) return;
 
-    const tooltip = item.querySelector('.formula-item-popup');
+    const tooltip = item.querySelector(popupSelector);
 
-    tooltip.classList.remove('formula-item-popup--rotated');
+    tooltip.classList.remove('item-popup--rotated');
 
-    item.classList.add('active-item');
-    if (tooltip.getBoundingClientRect().top < 0) tooltip.classList.add('formula-item-popup--rotated');
+    item.classList.add(activeItemClass);
+    if (tooltip.getBoundingClientRect().top < 0) tooltip.classList.add('item-popup--rotated');
   });
 
-  advantagesWrapper.addEventListener('mouseout', evt => {
+  wrapper.addEventListener('mouseout', evt => {
     const target = evt.target,
-      item = target.closest('.formula-item');
+      item = target.closest(itemSelector);
 
-    if (!target.closest('.formula-item__icon-inner-text')) return;
+    if (!target.closest(iconSelector)) return;
 
-    item.classList.remove('active-item');
+    item.classList.remove(activeItemClass);
   });
 };
 
