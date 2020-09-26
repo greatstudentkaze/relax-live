@@ -1,3 +1,6 @@
+// Polyfills
+import '@babel/polyfill';
+
 // Modules
 import showPhoneNumber from './modules/showPhoneNumber';
 import menuHandler from './modules/menuHandler';
@@ -8,6 +11,7 @@ import SliderCarousel from './modules/sliderCarousel';
 import faqAccordion from './modules/faqAccordion';
 import tabs from './modules/tabs';
 import tabsSlider from './modules/tabsSlider';
+import maskPhone from './modules/maskPhone';
 import sendForm from './modules/sendForm';
 
 // Init Modules
@@ -51,6 +55,15 @@ const popupPrivacySelectors = {
 };
 
 popupHandler(popupPrivacySelectors);
+
+// popup-thank
+const popupThankSelectors = {
+  popupSelector: '.popup-thank',
+  closeBtnSelector: '.close-thank',
+  popupDialogSelector: '.feedback-wrap'
+};
+
+popupHandler(popupThankSelectors);
 
 // Tooltips in the advantages block
 tooltipHandler();
@@ -101,6 +114,9 @@ tabs();
 
 // scheme tabs slider
 tabsSlider();
+
+// Add a phone number input mask
+maskPhone('input[name="phone"]');
 
 // Send form
 sendForm();
