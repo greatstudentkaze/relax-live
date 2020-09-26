@@ -141,7 +141,15 @@ problemsSlider.init();
 faqAccordion();
 
 // scheme tabs
-tabs();
+const schemeTabSelectors = {
+  sectionSelector: '.scheme',
+  tabSelector: '.button_o',
+  tabContentSelector: '.scheme-description-block',
+  sliderWrapSelector: '.js-slider-wrap',
+  slideSelector: '.scheme-slider__slide',
+  visibleTabContent: 'visible-content-block'
+};
+tabs(schemeTabSelectors);
 
 // scheme tabs slider
 tabsSlider();
