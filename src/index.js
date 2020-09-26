@@ -13,6 +13,7 @@ import tabs from './modules/tabs';
 import tabsSlider from './modules/tabsSlider';
 import maskPhone from './modules/maskPhone';
 import sendForm from './modules/sendForm';
+import renderRepairTypesData from './modules/renderRepairTypesData';
 
 // Init Modules
 
@@ -150,3 +151,6 @@ maskPhone('input[name="phone"]');
 
 // Send form
 sendForm();
+
+// Render data of .popup-repair-types
+renderRepairTypesData('db/db.json');
