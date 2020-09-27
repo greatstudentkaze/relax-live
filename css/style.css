@@ -2465,6 +2465,10 @@ div.wave-block:nth-child(17):after {
   align-items: flex-start;
 }
 
+.transparency-slider.row {
+  flex-wrap: nowrap;
+}
+
 @media (max-width: 1090px) {
   .transparency-slider.row {
     display: block;
@@ -7071,6 +7075,10 @@ div.wave-block:nth-child(17):after {
     width: 300px;
     height: 453px;
   }
+}
+
+.popup-transparency-slider__slide {
+  display: none;
 }
 
 .popup-design-slider {
