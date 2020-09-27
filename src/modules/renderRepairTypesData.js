@@ -1,4 +1,5 @@
 import tabs from './tabs';
+import tabsSlider from './tabsSlider';
 
 const renderRepairTypesData = url => {
 
@@ -74,7 +75,7 @@ const renderRepairTypesData = url => {
     renderTitles(data.slice(1));
     renderTables(data.slice(1));
 
-    // repair types tabs
+    // repair-types tabs
     const repairTypesTabSelectors = {
       sectionSelector: '.popup-repair-types',
       tabSelector: '.button_o',
@@ -82,6 +83,9 @@ const renderRepairTypesData = url => {
       visibleTabContent: 'visible-content-table'
     };
     tabs(repairTypesTabSelectors);
+
+    // repair-types tabs slider
+    tabsSlider('.popup-repair-types');
 
     return data;
   };
