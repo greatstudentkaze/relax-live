@@ -15,6 +15,7 @@ import tabsSlider from './modules/tabsSlider';
 import repairTypes from './modules/repairTypes';
 import designs from './modules/designs';
 import popupDesign from './modules/popupDesign';
+import portfolio from './modules/portfolio';
 import maskPhone from './modules/maskPhone';
 import sendForm from './modules/sendForm';
 import renderRepairTypesData from './modules/renderRepairTypesData';
@@ -169,6 +170,9 @@ designs();
 
 // functional of design popup
 popupDesign();
+
+// functional of portfolio block
+portfolio();
 
 // Add a phone number input mask
 maskPhone('input[name="phone"]');
