@@ -9,6 +9,7 @@ import popupHandler from './modules/popupHandler';
 import tooltipHandler from './modules/tooltipHandler';
 import SliderCarousel from './modules/sliderCarousel';
 import faqAccordion from './modules/faqAccordion';
+import documents from './modules/documents';
 import tabs from './modules/tabs';
 import tabsSlider from './modules/tabsSlider';
 import repairTypes from './modules/repairTypes';
@@ -140,6 +141,9 @@ problemsSlider.init();
 
 // FAQ Accordion
 faqAccordion();
+
+// functional of document block
+documents();
 
 // scheme tabs
 const schemeTabSelectors = {
