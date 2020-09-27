@@ -11,6 +11,7 @@ import SliderCarousel from './modules/sliderCarousel';
 import faqAccordion from './modules/faqAccordion';
 import tabs from './modules/tabs';
 import tabsSlider from './modules/tabsSlider';
+import repairTypes from './modules/repairTypes';
 import maskPhone from './modules/maskPhone';
 import sendForm from './modules/sendForm';
 import renderRepairTypesData from './modules/renderRepairTypesData';
@@ -152,7 +153,10 @@ const schemeTabSelectors = {
 tabs(schemeTabSelectors);
 
 // scheme tabs slider
-tabsSlider();
+tabsSlider('.scheme');
+
+// repair-types tabs and sliders
+repairTypes();
 
 // Add a phone number input mask
 maskPhone('input[name="phone"]');
