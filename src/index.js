@@ -13,6 +13,8 @@ import documents from './modules/documents';
 import tabs from './modules/tabs';
 import tabsSlider from './modules/tabsSlider';
 import repairTypes from './modules/repairTypes';
+import designs from './modules/designs';
+import popupDesign from './modules/popupDesign';
 import maskPhone from './modules/maskPhone';
 import sendForm from './modules/sendForm';
 import renderRepairTypesData from './modules/renderRepairTypesData';
@@ -161,6 +163,12 @@ tabsSlider('.scheme');
 
 // repair-types tabs and sliders
 repairTypes();
+
+// functional of design block
+designs();
+
+// functional of design popup
+popupDesign();
 
 // Add a phone number input mask
 maskPhone('input[name="phone"]');
