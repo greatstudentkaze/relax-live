@@ -1627,6 +1627,10 @@ template, [hidden] {
   }
 }
 
+.types-repair {
+  display: none !important;
+}
+
 .repair-types-slider-wrap {
   position: relative;
 }
@@ -8999,6 +9003,10 @@ div.wave-block:nth-child(17):after {
 
 .visible-content-table {
   display: table;
+}
+
+.visible-content-flex {
+  display: flex !important;
 }
 
 * {
