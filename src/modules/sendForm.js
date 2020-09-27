@@ -43,6 +43,7 @@ const sendForm = () => {
 
     statusMessage.textContent = '';
     popupThank.classList.add('popup--opened');
+    document.body.style.overflowY = 'hidden';
 
     return response;
   };
