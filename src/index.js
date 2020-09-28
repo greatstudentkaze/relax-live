@@ -1,5 +1,15 @@
 // Polyfills
 import '@babel/polyfill';
+import 'nodelist-foreach-polyfill';
+import 'formdata-polyfill';
+import 'es6-promise';
+import 'fetch-polyfill';
+import 'scroll-behavior-polyfill';
+import 'mdn-polyfills/Node.prototype.append';
+import './polyfills/template-polyfill';
+import elementClosest from 'element-closest';
+elementClosest(window);
+
 
 // Modules
 import showPhoneNumber from './modules/showPhoneNumber';
@@ -123,8 +133,7 @@ const advantagesSliderOptions = {
   togglePrev: '#formula-arrow_left',
   toggleNext: '#formula-arrow_right',
   activeItem: 'active-item',
-  slidesNumber: 1,
-  extraStyles: '.gsk-slider__list { align-items: start !important; }'
+  slidesNumber: 1
 };
 const advantagesSlider = new SliderCarousel(advantagesSliderOptions);
 advantagesSlider.init();
@@ -136,8 +145,7 @@ const problemsSliderOptions = {
   togglePrev: '#problems-arrow_left',
   toggleNext: '#problems-arrow_right',
   activeItem: 'active-item',
-  slidesNumber: 1,
-  extraStyles: '.gsk-slider__list { align-items: start !important; }'
+  slidesNumber: 1
 };
 const problemsSlider = new SliderCarousel(problemsSliderOptions);
 problemsSlider.init();
