@@ -5,7 +5,6 @@ class SliderCarousel {
     slidesNumber = 4,
     infinity = false,
     responsive = [],
-    extraStyles
   }) {
     this.wrapper = document.querySelector(wrapper);
     this.slideList = document.querySelector(slideList);
@@ -25,7 +24,6 @@ class SliderCarousel {
       infinity
     };
     this.responsive = responsive;
-    this.extraStyles = extraStyles;
   }
 
   init() {
@@ -115,7 +113,10 @@ class SliderCarousel {
   addClasses() {
     this.wrapper.classList.add('gsk-slider');
     this.slideList.classList.add('gsk-slider__list');
-    [...this.slides].forEach(slide => slide.classList.add('gsk-slider__item', `gsk-slider__item--${this.sliderId}`));
+    [...this.slides].forEach(slide => {
+      slide.classList.add('gsk-slider__item');
+      slide.classList.add(`gsk-slider__item--${this.sliderId}`);
+    });
     if (this.activeItem) this.slides[0].classList.add(this.activeItem);
   }
 
@@ -128,10 +129,9 @@ class SliderCarousel {
 
     style.textContent = `
       .gsk-slider__item--${this.sliderId} {
+        -ms-flex-preferred-size: ${this.options.slideWidth}% !important;
         flex-basis: ${this.options.slideWidth}% !important;
       }`;
-
-    if (this.extraStyles) style.textContent += this.extraStyles;
 
     document.head.append(style);
   }
