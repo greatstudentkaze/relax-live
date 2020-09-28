@@ -130,6 +130,10 @@ const portfolio = () => {
   class PopupPortfolioSlider extends SliderCarousel {
     constructor(sliderOptions) {
       super(sliderOptions);
+
+      this.addContent = document.querySelectorAll(sliderOptions.additionalContent);
+      this.activeAddContent = sliderOptions.activeAddContent;
+
       this.counter = {
         wrapper: document.querySelector(sliderOptions.counter)
       };
@@ -152,6 +156,14 @@ const portfolio = () => {
       this.counter.current.textContent = this.options.position + 1;
     }
 
+    removeActive(position) {
+      if (this.addContent) this.addContent[position].classList.remove(this.activeAddContent);
+    }
+
+    addActive(position) {
+      if (this.addContent) this.addContent[position].classList.add(this.activeAddContent);
+    }
+
     updateCounter() {
       this.counter.current.textContent = this.options.position + 1;
       this.counter.total.textContent = this.slides.length;
@@ -163,6 +175,8 @@ const portfolio = () => {
     slideList: '.popup-portfolio-slider',
     togglePrev: '#popup_portfolio_left',
     toggleNext: '#popup_portfolio_right',
+    additionalContent: '.popup-portfolio-text',
+    activeAddContent: 'visible',
     counter: '#popup-portfolio-counter',
     slidesNumber: 1
   };
