@@ -1,6 +1,6 @@
 import popupHandler from './popupHandler';
 import tabsSlider from './tabsSlider';
-import SliderCarousel from "./sliderCarousel";
+import SliderCarouselCounter from './SliderCarouselCounter';
 
 const popupDesign = () => {
   // popup
@@ -14,36 +14,7 @@ const popupDesign = () => {
   popupHandler(popupSelectors);
 
   // slider
-  class DesignsSlider extends SliderCarousel {
-    constructor(sliderOptions) {
-      super(sliderOptions);
-      this.counter = {
-        wrapper: document.querySelector(sliderOptions.counter)
-      };
-      this.counter.current = this.counter.wrapper.querySelector('.slider-counter-content__current');
-      this.counter.total = this.counter.wrapper.querySelector('.slider-counter-content__total');
-    }
-
-    init() {
-      super.init();
-      if (this.counter) this.updateCounter();
-    }
-
-    prevSlide() {
-      super.prevSlide();
-      this.counter.current.textContent = this.options.position + 1;
-    }
-
-    nextSlide() {
-      super.nextSlide();
-      this.counter.current.textContent = this.options.position + 1;
-    }
-
-    updateCounter() {
-      this.counter.current.textContent = this.options.position + 1;
-      this.counter.total.textContent = this.slides.length;
-    }
-
+  class DesignsSlider extends SliderCarouselCounter {
     updateSlider() {
       this.slideList.style.transform = '';
       this.slideList.classList.remove('gsk-slider__list');
@@ -59,7 +30,7 @@ const popupDesign = () => {
     }
   }
 
-  const sliderOptions = {
+  const popupSliderOptions = {
     wrapper: '.popup-design-slider',
     slideList: '.popup-designs-slider__style.visible-content-block',
     togglePrev: '#popup_design_left',
@@ -68,8 +39,8 @@ const popupDesign = () => {
     slidesNumber: 1
   };
 
-  const slider = new DesignsSlider(sliderOptions);
-  slider.init();
+  const popupSlider = new DesignsSlider(popupSliderOptions);
+  popupSlider.init();
 
   // tabs
   const section = document.querySelector('.popup-dialog-design'),
@@ -88,7 +59,7 @@ const popupDesign = () => {
         if (sliderWrap) sliderWrap.style.transform = `translateX(-${i * slide.clientWidth}px)`;
         tabContent.classList.add('visible-content-block');
         addTabsContent[i].classList.add('visible-content-block');
-        slider.updateSlider();
+        popupSlider.updateSlider();
       } else {
         tabs[i].classList.remove('active');
         tabContent.classList.remove('visible-content-block');
