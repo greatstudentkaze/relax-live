@@ -1,25 +1,15 @@
 import togglePopup from './togglePopup';
-import SliderCarousel from './sliderCarousel';
+import SliderCarousel from './SliderCarousel';
+import SliderCarouselCounter from './SliderCarouselCounter';
 
 const portfolio = () => {
 
   // slider
-  class PortfolioSlider {
-    constructor({ wrap, slideList, togglePrev, toggleNext, displayedSlidesNumber, responsive, slideWidth }) {
-      this.wrapper = document.querySelector(wrap);
-      this.slideList = document.querySelector(slideList);
-      this.slides = this.slideList.children;
+  class PortfolioSlider extends SliderCarousel {
+    constructor(sliderOptions) {
+      super(sliderOptions);
 
-      this.togglePrev = document.querySelector(togglePrev);
-      this.toggleNext = document.querySelector(toggleNext);
-
-      this.slidesNumber = displayedSlidesNumber;
-
-      this.responsive = responsive;
-
-      this.position = 0;
-      this.maxPosition = this.slides.length - this.slidesNumber;
-      this.slideWidth = slideWidth;
+      this.options.slideWidth = sliderOptions.slideWidth;
     }
 
     init() {
@@ -29,38 +19,33 @@ const portfolio = () => {
     }
 
     prevSlide() {
-      if (this.position > 0) {
-        this.position--;
+      if (this.options.position > 0) {
+        this.options.position--;
 
-        this.slideList.style.transform = `translateX(-${this.position * this.slideWidth}px)`;
+        this.slideList.style.transform = `translateX(-${this.options.position * this.options.slideWidth}px)`;
 
         this.toggleHandler('flex');
       }
     }
 
     nextSlide() {
-      if (this.position < this.maxPosition) {
-        this.position++;
+      if (this.options.position < this.options.maxPosition) {
+        this.options.position++;
 
-        this.slideList.style.transform = `translateX(-${this.position * this.slideWidth}px)`;
+        this.slideList.style.transform = `translateX(-${this.options.position * this.options.slideWidth}px)`;
 
         this.toggleHandler('flex');
       }
     }
 
-    configureToggles() {
-      this.togglePrev.addEventListener('click', this.prevSlide.bind(this));
-      this.toggleNext.addEventListener('click', this.nextSlide.bind(this));
-    }
-
     toggleHandler(propValue) {
-      if (this.position === 0) {
+      if (this.options.position === 0) {
         this.hideToggle(this.togglePrev);
       } else {
         this.showToggle(this.togglePrev, propValue);
       }
 
-      if (this.position === this.maxPosition) {
+      if (this.options.position === this.options.maxPosition) {
         this.hideToggle(this.toggleNext);
       } else {
         this.showToggle(this.toggleNext, propValue);
@@ -77,7 +62,7 @@ const portfolio = () => {
 
     makeSliderResponsive() {
       const defaultSlidesNumber = this.slidesNumber,
-        defaultSlideWidth = this.slideWidth,
+        defaultSlideWidth = this.options.slideWidth,
         allBreakpoints = this.responsive.map(item => item.breakpoint),
         maxBreakpoint = Math.max(...allBreakpoints);
 
@@ -94,32 +79,32 @@ const portfolio = () => {
         allBreakpoints.forEach((breakpoint, i) => {
           if (windowWidth < breakpoint) {
             this.slidesNumber = this.responsive[i].displayedSlidesNumber;
-            if (this.responsive[i].displayedSlidesNumber === 1) this.slideWidth = 393.75;
+            if (this.responsive[i].displayedSlidesNumber === 1) this.options.slideWidth = 393.75;
             else this.slideWidth = defaultSlideWidth;
             this.updateOptions();
           }
         });
       } else {
         this.slidesNumber = defaultSlidesNumber;
-        this.slideWidth = defaultSlideWidth;
+        this.options.slideWidth = defaultSlideWidth;
         this.updateOptions();
       }
     }
 
     updateOptions() {
       this.slideList.style.transform = 'translateX(0)';
-      this.maxPosition = this.slides.length - this.slidesNumber;
-      this.position = 0;
+      this.options.maxPosition = this.slides.length - this.slidesNumber;
+      this.options.position = 0;
       this.toggleHandler('flex');
     }
   }
 
   const sliderOptions = {
-    wrap: '.portfolio-slider',
+    wrapper: '.portfolio-slider',
     slideList: '.portfolio__slide-list',
     togglePrev: '#portfolio-arrow_left',
     toggleNext: '#portfolio-arrow_right',
-    displayedSlidesNumber: 3,
+    slidesNumber: 3,
     slideWidth: 344.667,
     responsive: [{ breakpoint: 1025, displayedSlidesNumber: 2 }, { breakpoint: 900, displayedSlidesNumber: 1 }]
   };
@@ -127,33 +112,12 @@ const portfolio = () => {
   const slider = new PortfolioSlider(sliderOptions);
 
   // popup slider
-  class PopupPortfolioSlider extends SliderCarousel {
+  class PopupPortfolioSlider extends SliderCarouselCounter {
     constructor(sliderOptions) {
       super(sliderOptions);
 
       this.addContent = document.querySelectorAll(sliderOptions.additionalContent);
       this.activeAddContent = sliderOptions.activeAddContent;
-
-      this.counter = {
-        wrapper: document.querySelector(sliderOptions.counter)
-      };
-      this.counter.current = this.counter.wrapper.querySelector('.slider-counter-content__current');
-      this.counter.total = this.counter.wrapper.querySelector('.slider-counter-content__total');
-    }
-
-    init() {
-      super.init();
-      if (this.counter) this.updateCounter();
-    }
-
-    prevSlide() {
-      super.prevSlide();
-      this.counter.current.textContent = this.options.position + 1;
-    }
-
-    nextSlide() {
-      super.nextSlide();
-      this.counter.current.textContent = this.options.position + 1;
     }
 
     removeActive(position) {
@@ -162,11 +126,6 @@ const portfolio = () => {
 
     addActive(position) {
       if (this.addContent) this.addContent[position].classList.add(this.activeAddContent);
-    }
-
-    updateCounter() {
-      this.counter.current.textContent = this.options.position + 1;
-      this.counter.total.textContent = this.slides.length;
     }
   }
 
