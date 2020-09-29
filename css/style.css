@@ -185,7 +185,7 @@ template, [hidden] {
     overflow: hidden;
     border-bottom-left-radius: 100% 17%;
     border-bottom-right-radius: 100% 17%;
-    width: 110%;
+    width: 105%;
     left: -5%;
     height: 639px;
     background: url("../images/main/main-mobile-bg.jpg") no-repeat;
@@ -1069,13 +1069,13 @@ template, [hidden] {
 
 @media (max-width: 1460px) {
   .formula:after {
-    right: -80px;
+    /*right: -80px;*/
   }
 }
 
 @media (max-width: 1250px) {
   .formula:after {
-    right: -150px;
+    /*right: -150px;*/
   }
 }
 
@@ -1088,7 +1088,7 @@ template, [hidden] {
 @media (max-width: 920px) {
   .formula:after {
     top: -310px;
-    right: -156px;
+    /*right: -156px;*/
   }
 }
 
@@ -1915,6 +1915,7 @@ template, [hidden] {
 
 @media (max-width: 1200px) {
   .feedback-block__title:after {
+    display: none;
     right: -620px;
   }
 }
@@ -4778,7 +4779,7 @@ div.wave-block:nth-child(17):after {
 
 @media (max-width: 1024px) {
   .faq:after {
-    right: -50px;
+    /*right: -50px;*/
   }
 }
 
@@ -5470,7 +5471,7 @@ div.wave-block:nth-child(17):after {
 
 @media (max-width: 575px) {
   .popup-dialog-menu {
-    width: 110%;
+    width: 105%;
     height: 705px;
     background: #322823;
     border-bottom-left-radius: 100% 17%;
@@ -9423,7 +9424,7 @@ strong {
     overflow: hidden;
     border-top-left-radius: 100% 17%;
     border-top-right-radius: 100% 17%;
-    width: 110%;
+    width: 105%;
     left: -5%;
   }
 }
