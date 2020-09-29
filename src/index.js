@@ -10,14 +10,13 @@ import './polyfills/template-polyfill';
 import elementClosest from 'element-closest';
 elementClosest(window);
 
-
 // Modules
 import showPhoneNumber from './modules/showPhoneNumber';
 import menuHandler from './modules/menuHandler';
 import smoothScrollUp from './modules/smoothScrollUp';
 import popupHandler from './modules/popupHandler';
 import tooltipHandler from './modules/tooltipHandler';
-import SliderCarousel from './modules/sliderCarousel';
+import SliderCarousel from './modules/SliderCarousel';
 import faqAccordion from './modules/faqAccordion';
 import documents from './modules/documents';
 import tabs from './modules/tabs';
