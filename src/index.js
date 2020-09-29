@@ -19,7 +19,7 @@ import tooltipHandler from './modules/tooltipHandler';
 import SliderCarousel from './modules/SliderCarousel';
 import faqAccordion from './modules/faqAccordion';
 import documents from './modules/documents';
-import tabs from './modules/tabs';
+import TabHandler from './modules/TabHandler';
 import tabsSlider from './modules/tabsSlider';
 import repairTypes from './modules/repairTypes';
 import designs from './modules/designs';
@@ -157,14 +157,18 @@ documents();
 
 // scheme tabs
 const schemeTabSelectors = {
-  sectionSelector: '.scheme',
-  tabSelector: '.button_o',
-  tabContentSelector: '.scheme-description-block',
-  sliderWrapSelector: '.js-slider-wrap',
-  slideSelector: '.scheme-slider__slide',
-  visibleTabContent: 'visible-content-block'
+  section: '.scheme',
+  tab: '.button_o',
+  tabContent: '.scheme-description-block',
+  sliderWrap: '.js-slider-wrap',
+  slide: '.scheme-slider__slide',
+  options: {
+    tabActive: 'active',
+    tabContentActive: 'visible-content-block'
+  }
 };
-tabs(schemeTabSelectors);
+const schemeTabHandler = new TabHandler(schemeTabSelectors);
+schemeTabHandler.init();
 
 // scheme tabs slider
 tabsSlider('.scheme');
