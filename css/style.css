@@ -8823,11 +8823,11 @@ div.wave-block:nth-child(17):after {
   opacity: 1;
 }
 
-#designs > .wrapper > div.preview-block.visible > .preview-block__item > .preview-block__item-inner.preview_active {
+#designs .preview-block__item.preview_active .preview-block__item-inner {
   color: #ffffff;
 }
 
-#designs > .wrapper > div.preview-block.visible > .preview-block__item > .preview-block__item-inner.preview_active ~ img {
+#designs .preview-block__item.preview_active .preview-block__item-inner ~ img {
   border-color: white;
 }
 
