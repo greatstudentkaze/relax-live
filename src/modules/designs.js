@@ -1,7 +1,75 @@
 import tabsSlider from './tabsSlider';
+import SliderCarouselCounter from './SliderCarouselCounter';
 
 const designs = () => {
 
+  // slider (<= 1024px)
+  class DesignsSlider extends SliderCarouselCounter {
+
+    init() {
+      if (this.togglePrev && this.toggleNext) this.configureToggles();
+
+      if (this.counter) this.updateCounter();
+
+      if (this.responsive) this.makeSliderResponsive();
+    }
+
+    prevSlide() {
+      if (this.options.position > 0 || this.options.infinity) {
+        this.removeActive(this.options.position);
+        this.options.position--;
+
+        if (this.options.position < 0) {
+          this.options.position = this.options.maxPosition;
+        }
+
+        this.addActive(this.options.position);
+      }
+
+      this.counter.current.textContent = this.options.position + 1;
+    }
+
+    nextSlide() {
+      if (this.options.position < this.options.maxPosition || this.options.infinity) {
+        this.removeActive(this.options.position);
+        this.options.position++;
+
+        if (this.options.position > this.options.maxPosition) {
+          this.options.position = 0;
+        }
+
+        this.addActive(this.options.position);
+      }
+
+      this.counter.current.textContent = this.options.position + 1;
+    }
+
+    updateSlider() {
+      this.options.position = 0;
+
+      this.slideList = document.querySelector('.designs-slider__style.visible-content-block');
+      this.slides = this.slideList.children;
+
+      this.options.maxPosition = this.slides.length - this.slidesNumber;
+
+      this.updateCounter();
+    }
+  }
+
+  const sliderOptions = {
+    wrapper: '.designs-slider',
+    slideList: '.designs-slider__style.visible-content-block',
+    togglePrev: '#design_left',
+    toggleNext: '#design_right',
+    activeItem: 'visible-content-block',
+    counter: '#designs-counter',
+    slidesNumber: 1
+  };
+
+  const slider = new DesignsSlider(sliderOptions);
+  slider.init();
+
+  // tabs
   const section = document.querySelector('.designs'),
     tabs = section.querySelectorAll('.button_o'),
     tabsContent = section.querySelectorAll('.designs-slider__style'),
@@ -18,6 +86,7 @@ const designs = () => {
         tabs[i].classList.add('active');
         tabContent.classList.add('visible-content-block');
         addTabsContent[i].classList.add('visible');
+        slider.updateSlider();
       } else {
         tabs[i].classList.remove('active');
         tabContent.classList.remove('visible-content-block');
