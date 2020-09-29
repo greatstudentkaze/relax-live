@@ -12,7 +12,7 @@ class SliderCarousel {
     this.togglePrev = document.querySelector(togglePrev);
     this.toggleNext = document.querySelector(toggleNext);
     this.slidesNumber = slidesNumber;
-    this.sliderId = `${(+new Date()).toString(16)}`;
+    this.sliderId = (~~(Math.random()*1e8)).toString(16);
 
     this.dotList = document.querySelector(dotList);
     this.activeItem = activeItem;
