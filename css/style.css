@@ -1633,7 +1633,6 @@ template, [hidden] {
 
 .repair-types-slider-wrap {
   position: relative;
-  overflow-x: hidden;
 }
 
 @media (max-width: 1024px) {
