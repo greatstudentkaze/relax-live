@@ -1,5 +1,6 @@
 import popupHandler from './popupHandler';
-import SliderCarousel from './sliderCarousel';
+import SliderCarousel from './SliderCarousel';
+import SliderCarouselCounter from './SliderCarouselCounter';
 
 const documents = () => {
 
@@ -12,6 +13,7 @@ const documents = () => {
     slidesNumber: 3,
     responsive: [{ breakpoint: 1090, slidesNumber: 1 }]
   };
+
   const slider = new SliderCarousel(sliderOptions);
 
   // popup
@@ -23,38 +25,6 @@ const documents = () => {
   };
 
   // popup slider
-  class PopupDocumentsSlider extends SliderCarousel {
-    constructor(sliderOptions) {
-      super(sliderOptions);
-
-      this.counter = {
-        wrapper: document.querySelector(sliderOptions.counter)
-      };
-      this.counter.current = this.counter.wrapper.querySelector('.slider-counter-content__current');
-      this.counter.total = this.counter.wrapper.querySelector('.slider-counter-content__total');
-    }
-
-    init() {
-      super.init();
-      if (this.counter) this.updateCounter();
-    }
-
-    prevSlide() {
-      super.prevSlide();
-      this.counter.current.textContent = this.options.position + 1;
-    }
-
-    nextSlide() {
-      super.nextSlide();
-      this.counter.current.textContent = this.options.position + 1;
-    }
-
-    updateCounter() {
-      this.counter.current.textContent = this.options.position + 1;
-      this.counter.total.textContent = this.slides.length;
-    }
-  }
-
   const popupSliderOptions = {
     wrapper: '.popup-transparency-slider',
     slideList: '.popup-transparency .js-slides-wrapper',
@@ -64,7 +34,7 @@ const documents = () => {
     slidesNumber: 1
   };
 
-  const popupSlider = new PopupDocumentsSlider(popupSliderOptions);
+  const popupSlider = new SliderCarouselCounter(popupSliderOptions);
 
   const sliderWrap = document.querySelector('.transparency-slider-wrap'),
     documents = sliderWrap.querySelectorAll('.transparency-item__img');
