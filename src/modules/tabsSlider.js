@@ -14,7 +14,7 @@ const tabsSlider = sectionSelector => {
 
     if (document.documentElement.clientWidth <= 576) {
       maxPosition = tabs.length - 1;
-    } else if (document.documentElement.clientWidth <= 668) {
+    } else if (document.documentElement.clientWidth <= 800) {
       maxPosition = tabs.length - 2;
     } else if (document.documentElement.clientWidth <= 1024) {
       maxPosition = tabs.length - 3;
