@@ -14,6 +14,14 @@ const documents = () => {
   };
   const slider = new SliderCarousel(sliderOptions);
 
+  // popup
+  const popupTransparencySelectors = {
+    popupSelector: '.popup-transparency',
+    openBtnSelector: '.transparency-item__img',
+    closeBtnSelector: '.close',
+    popupDialogSelector: '.popup-dialog-transparency'
+  };
+
   // popup slider
   class PopupDocumentsSlider extends SliderCarousel {
     constructor(sliderOptions) {
@@ -58,16 +66,6 @@ const documents = () => {
 
   const popupSlider = new PopupDocumentsSlider(popupSliderOptions);
 
-  // popup
-  const popupTransparencySelectors = {
-    popupSelector: '.popup-transparency',
-    openBtnSelector: '.transparency-item__img',
-    closeBtnSelector: '.close',
-    popupDialogSelector: '.popup-dialog-transparency'
-  };
-
-  popupHandler(popupTransparencySelectors);
-
   const sliderWrap = document.querySelector('.transparency-slider-wrap'),
     documents = sliderWrap.querySelectorAll('.transparency-item__img');
 
@@ -88,6 +86,7 @@ const documents = () => {
   // init
   slider.init();
   popupSlider.init();
+  popupHandler(popupTransparencySelectors);
 };
 
 export default documents;
