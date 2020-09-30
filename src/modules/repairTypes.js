@@ -1,5 +1,6 @@
 import SliderCarouselCounter from './SliderCarouselCounter';
-import tabsSlider from "./tabsSlider";
+import TabHandler from './TabHandler';
+import tabsSlider from './tabsSlider';
 
 const repairTypes = () => {
 
@@ -20,7 +21,7 @@ const repairTypes = () => {
     }
   }
 
-  const repairTypesSliderOptions = {
+  const sliderOptions = {
     wrapper: '.repair-types-slider',
     slideList: '.types-repair.visible-content-flex',
     togglePrev: '#repair-types-arrow_left',
@@ -29,41 +30,30 @@ const repairTypes = () => {
     slidesNumber: 1
   };
 
-  const repairTypesSlider = new RepairTypesSlider(repairTypesSliderOptions);
-  repairTypesSlider.init();
+  const slider = new RepairTypesSlider(sliderOptions);
+  slider.init();
 
   // tabs
-  const section = document.querySelector('.repair-types'),
-    tabs = section.querySelectorAll('.button_o'),
-    tabsContent = section.querySelectorAll('.types-repair'),
-    sliderWrap = section.querySelector('.types-repair.visible-content-block');
-
-  const toggleTabContent = index => {
-    let slide;
-    if (sliderWrap) slide = sliderWrap.querySelector('.repair-types-slider__slide');
-
-    tabsContent.forEach((tabContent, i) => {
-      if (index === i) {
-        tabs[i].classList.add('active');
-        if (sliderWrap) sliderWrap.style.transform = `translateX(-${i * slide.clientWidth}px)`;
-        tabContent.classList.add('visible-content-flex');
-        repairTypesSlider.updateSlider();
-      } else {
-        tabs[i].classList.remove('active');
-        tabContent.classList.remove('visible-content-flex');
-      }
-    });
-  };
-
-  section.addEventListener('click', evt => {
-    const targetTab = evt.target.closest('.button_o');
-
-    if (targetTab) {
-      tabs.forEach((tab, index) => {
-        if (tab === targetTab) toggleTabContent(index);
-      });
+  class RepairTypesTabHandler extends TabHandler {
+    toggleTabContent(index) {
+      super.toggleTabContent(index);
+      slider.updateSlider();
     }
-  });
+  }
+
+  const tabSelectors = {
+    section: '.repair-types',
+    tab: '.button_o',
+    tabContent: '.types-repair',
+    sliderWrap: '.types-repair.visible-content-block',
+    slide: '.repair-types-slider__slide',
+    options: {
+      tabActive: 'active',
+      tabContentActive: 'visible-content-flex'
+    }
+  };
+  const tabHandler = new RepairTypesTabHandler(tabSelectors);
+  tabHandler.init();
 
   // tabs slider
   tabsSlider('.repair-types');
