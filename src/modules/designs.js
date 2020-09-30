@@ -75,10 +75,6 @@ const designs = () => {
     constructor(props) {
       super(props);
 
-      this.addTabsContent = this.section.querySelectorAll(props.addTabContent);
-      this.options.addTabContentSelector = props.addTabContent;
-      this.options.addTabContentActive = props.options.addTabContentActive;
-
       this.options.tabItemSelector = props.options.tabItem;
       this.options.tabItemActive = props.options.tabItemActive;
       this.options.addTabItemSelector = props.options.addTabItem;
@@ -96,16 +92,6 @@ const designs = () => {
 
       this.currentTab.tabItems = this.tabsContent[index].querySelectorAll(this.options.tabItemSelector);
       this.currentTab.addTabItems = this.addTabsContent[index].querySelectorAll(this.options.addTabItemSelector);
-    }
-
-    openTab(index, tabContent) {
-      super.openTab(index, tabContent);
-      this.addTabsContent[index].classList.add(this.options.addTabContentActive);
-    }
-
-    closeTab(index, tabContent) {
-      super.closeTab(index, tabContent);
-      this.addTabsContent[index].classList.remove(this.options.addTabContentActive);
     }
 
     sectionHandler(evt) {
