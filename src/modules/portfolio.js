@@ -211,7 +211,7 @@ const portfolio = () => {
     if (!target) return;
 
     if (document.documentElement.clientWidth < 576) {
-      portfolioItems = section.querySelectorAll('.portfolio__slide-list-mobile .portfolio-slider__slide-frame')
+      portfolioItems = section.querySelectorAll('.portfolio__slide-list-mobile .portfolio-slider__slide-frame');
     } else {
       portfolioItems = section.querySelectorAll('.portfolio__slide-list .portfolio-slider__slide-frame');
     }
