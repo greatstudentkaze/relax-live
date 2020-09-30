@@ -51,18 +51,21 @@ class TabHandler {
     this.slide = this.sliderWrap.querySelector(this.options.slideSelector);
   }
 
-  addEventListeners() {
-    this.section.addEventListener('click', evt => {
-      const targetTab = evt.target.closest(this.options.tabSelector);
+  sectionHandler(evt) {
+    const target = evt.target,
+      targetTab = target.closest(this.options.tabSelector);
 
-      if (targetTab) {
-        this.tabs.forEach((tab, index) => {
-          if (tab === targetTab) {
-            this.toggleTabContent(index);
-          }
-        });
-      }
-    });
+    if (targetTab) {
+      this.tabs.forEach((tab, index) => {
+        if (tab === targetTab) {
+          this.toggleTabContent(index);
+        }
+      });
+    }
+  }
+
+  addEventListeners() {
+    this.section.addEventListener('click', this.sectionHandler.bind(this));
   }
 }
 
