@@ -45,26 +45,10 @@ const popupDesign = () => {
 
   // tabs
   class PopupDesignTabHandler extends TabHandler {
-    constructor(props) {
-      super(props);
-
-      this.addTabsContent = this.section.querySelectorAll(props.addTabContent);
-      this.options.addTabContentSelector = props.addTabContent;
-    }
 
     toggleTabContent(index) {
       super.toggleTabContent(index);
       popupSlider.updateSlider();
-    }
-
-    openTab(index, tabContent) {
-      super.openTab(index, tabContent);
-      this.addTabsContent[index].classList.add((this.options.addTabContentActive));
-    }
-
-    closeTab(index, tabContent) {
-      super.closeTab(index, tabContent);
-      this.addTabsContent[index].classList.remove((this.options.addTabContentActive));
     }
   }
 
