@@ -1,5 +1,6 @@
 import tabsSlider from './tabsSlider';
 import SliderCarouselCounter from './SliderCarouselCounter';
+import TabHandler from './TabHandler';
 
 const designs = () => {
 
@@ -70,57 +71,79 @@ const designs = () => {
   slider.init();
 
   // tabs
-  const section = document.querySelector('.designs'),
-    tabs = section.querySelectorAll('.button_o'),
-    tabsContent = section.querySelectorAll('.designs-slider__style'),
-    addTabsContent = section.querySelectorAll('.preview-block');
+  class DesignTabHandler extends TabHandler {
+    constructor(props) {
+      super(props);
 
-  const currentTab = {
-    slides: tabsContent[0].querySelectorAll('.designs-slider__style-slide'),
-    previews: addTabsContent[0].querySelectorAll('.preview-block__item'),
-  };
+      this.addTabsContent = this.section.querySelectorAll(props.addTabContent);
+      this.options.addTabContentSelector = props.addTabContent;
+      this.options.addTabContentActive = props.options.addTabContentActive;
 
-  const toggleTabContent = index => {
-    tabsContent.forEach((tabContent, i) => {
-      if (index === i) {
-        tabs[i].classList.add('active');
-        tabContent.classList.add('visible-content-block');
-        addTabsContent[i].classList.add('visible');
-        slider.updateSlider();
-      } else {
-        tabs[i].classList.remove('active');
-        tabContent.classList.remove('visible-content-block');
-        addTabsContent[i].classList.remove('visible');
+      this.options.tabItemSelector = props.options.tabItem;
+      this.options.tabItemActive = props.options.tabItemActive;
+      this.options.addTabItemSelector = props.options.addTabItem;
+      this.options.addTabItemActive = props.options.addTabItemActive;
+
+      this.currentTab = {
+        tabItems: this.tabsContent[0].querySelectorAll(this.options.tabItemSelector),
+        addTabItems: this.addTabsContent[0].querySelectorAll(this.options.addTabItemSelector)
+      };
+    }
+
+    toggleTabContent(index) {
+      super.toggleTabContent(index);
+      slider.updateSlider();
+
+      this.currentTab.tabItems = this.tabsContent[index].querySelectorAll(this.options.tabItemSelector);
+      this.currentTab.addTabItems = this.addTabsContent[index].querySelectorAll(this.options.addTabItemSelector);
+    }
+
+    openTab(index, tabContent) {
+      super.openTab(index, tabContent);
+      this.addTabsContent[index].classList.add(this.options.addTabContentActive);
+    }
+
+    closeTab(index, tabContent) {
+      super.closeTab(index, tabContent);
+      this.addTabsContent[index].classList.remove(this.options.addTabContentActive);
+    }
+
+    sectionHandler(evt) {
+      super.sectionHandler(evt);
+
+      const addTabItemTarget = evt.target.closest(this.options.addTabItemSelector);
+
+      if (addTabItemTarget) {
+        this.currentTab.addTabItems.forEach((addTabItem, i) => {
+          if (addTabItem === addTabItemTarget) {
+            addTabItem.classList.add(this.options.addTabItemActive);
+            this.currentTab.tabItems[i].classList.add(this.options.tabItemActive);
+          } else {
+            addTabItem.classList.remove(this.options.addTabItemActive);
+            this.currentTab.tabItems[i].classList.remove(this.options.tabItemActive);
+          }
+        });
       }
-    });
+    }
+  }
 
-    currentTab.slides = tabsContent[index].querySelectorAll('.designs-slider__style-slide');
-    currentTab.previews = addTabsContent[index].querySelectorAll('.preview-block__item');
+  const tabsOptions = {
+    section: '.designs',
+    tab: '.button_o',
+    tabContent: '.designs-slider__style',
+    addTabContent: '.preview-block',
+    options: {
+      tabItem: '.designs-slider__style-slide',
+      addTabItem: '.preview-block__item',
+      tabActive: 'active',
+      tabContentActive: 'visible-content-block',
+      addTabContentActive: 'visible',
+      tabItemActive: 'visible-content-block',
+      addTabItemActive: 'preview_active',
+    }
   };
-
-  section.addEventListener('click', evt => {
-    const target = evt.target,
-      targetTab = target.closest('.button_o'),
-      previewTarget = target.closest('.preview-block__item');
-
-    if (targetTab) {
-      tabs.forEach((tab, index) => {
-        if (tab === targetTab) toggleTabContent(index);
-      });
-    }
-
-    if (previewTarget) {
-      currentTab.previews.forEach((preview, i) => {
-        if (preview === previewTarget) {
-          preview.classList.add('preview_active');
-          currentTab.slides[i].classList.add('visible-content-block');
-        } else {
-          preview.classList.remove('preview_active');
-          currentTab.slides[i].classList.remove('visible-content-block');
-        }
-      });
-    }
-  });
+  const designTabHandler = new DesignTabHandler(tabsOptions);
+  designTabHandler.init();
 
   tabsSlider('.designs');
 };
