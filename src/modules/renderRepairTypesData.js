@@ -1,4 +1,4 @@
-import tabs from './tabs';
+import TabHandler from './TabHandler';
 import tabsSlider from './tabsSlider';
 
 const renderRepairTypesData = url => {
@@ -77,12 +77,16 @@ const renderRepairTypesData = url => {
 
     // repair-types tabs
     const repairTypesTabSelectors = {
-      sectionSelector: '.popup-repair-types',
-      tabSelector: '.button_o',
-      tabContentSelector: '.popup-repair-types-content-table__list',
-      visibleTabContent: 'visible-content-table'
+      section: '.popup-repair-types',
+      tab: '.button_o',
+      tabContent: '.popup-repair-types-content-table__list',
+      options: {
+        tabActive: 'active',
+        tabContentActive: 'visible-content-table'
+      }
     };
-    tabs(repairTypesTabSelectors);
+    const tabHandler = new TabHandler(repairTypesTabSelectors);
+    tabHandler.init();
 
     // repair-types tabs slider
     tabsSlider('.popup-repair-types');
