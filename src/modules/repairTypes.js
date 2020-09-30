@@ -52,6 +52,7 @@ const repairTypes = () => {
       tabContentActive: 'visible-content-flex'
     }
   };
+
   const tabHandler = new RepairTypesTabHandler(tabSelectors);
   tabHandler.init();
 
