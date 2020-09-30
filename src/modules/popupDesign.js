@@ -1,6 +1,7 @@
 import popupHandler from './popupHandler';
-import tabsSlider from './tabsSlider';
 import SliderCarouselCounter from './SliderCarouselCounter';
+import TabHandler from './TabHandler';
+import tabsSlider from './tabsSlider';
 
 const popupDesign = () => {
   // popup
@@ -43,41 +44,48 @@ const popupDesign = () => {
   popupSlider.init();
 
   // tabs
-  const section = document.querySelector('.popup-dialog-design'),
-    tabs = section.querySelectorAll('.button_o'),
-    tabsContent = section.querySelectorAll('.popup-designs-slider__style'),
-    addTabsContent = section.querySelectorAll('.popup-design-text'),
-    sliderWrap = section.querySelector('.popup-designs-slider__style__style.visible-content-block');
+  class PopupDesignTabHandler extends TabHandler {
+    constructor(props) {
+      super(props);
 
-  const toggleTabContent = index => {
-    let slide;
-    if (sliderWrap) slide = sliderWrap.querySelector('.popup-design-slider__style-slide');
+      this.addTabsContent = this.section.querySelectorAll(props.addTabContent);
+      this.options.addTabContentSelector = props.addTabContent;
+    }
 
-    tabsContent.forEach((tabContent, i) => {
-      if (index === i) {
-        tabs[i].classList.add('active');
-        if (sliderWrap) sliderWrap.style.transform = `translateX(-${i * slide.clientWidth}px)`;
-        tabContent.classList.add('visible-content-block');
-        addTabsContent[i].classList.add('visible-content-block');
-        popupSlider.updateSlider();
-      } else {
-        tabs[i].classList.remove('active');
-        tabContent.classList.remove('visible-content-block');
-        addTabsContent[i].classList.remove('visible-content-block');
-      }
-    });
+    toggleTabContent(index) {
+      super.toggleTabContent(index);
+      popupSlider.updateSlider();
+    }
+
+    openTab(index, tabContent) {
+      super.openTab(index, tabContent);
+      this.addTabsContent[index].classList.add((this.options.addTabContentActive));
+    }
+
+    closeTab(index, tabContent) {
+      super.closeTab(index, tabContent);
+      this.addTabsContent[index].classList.remove((this.options.addTabContentActive));
+    }
+  }
+
+  const tabSelectors = {
+    section: '.popup-dialog-design',
+    tab: '.button_o',
+    tabContent: '.popup-designs-slider__style',
+    addTabContent: '.popup-design-text',
+    sliderWrap: '.popup-designs-slider__style__style.visible-content-block',
+    slide: '.popup-design-slider__style-slide',
+    options: {
+      tabActive: 'active',
+      tabContentActive: 'visible-content-block',
+      addTabContentActive: 'visible-content-block'
+    }
   };
 
-  section.addEventListener('click', evt => {
-    const targetTab = evt.target.closest('.button_o');
+  const tabHandler = new PopupDesignTabHandler(tabSelectors);
+  tabHandler.init();
 
-    if (targetTab) {
-      tabs.forEach((tab, index) => {
-        if (tab === targetTab) toggleTabContent(index);
-      });
-    }
-  });
-
+  // tabs slider
   tabsSlider('.popup-dialog-design');
 };
 
